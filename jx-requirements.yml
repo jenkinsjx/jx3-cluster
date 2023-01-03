@@ -5,28 +5,45 @@ spec:
     enabled: false
     schedule: ""
   cluster:
+    chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
+    clusterName: tf-jx-ultimate-moray
     devEnvApprovers:
     - todo
     environmentGitOwner: todo
     gitKind: github
     gitName: github
     gitServer: https://github.com
+    gke:
+      projectNumber: "690862309494"
     kanikoFlags: --skip-unused-stages --snapshotMode=redo
+    project: workrecord-b3186
     provider: gke
     registry: gcr.io
+    zone: us-central1-a
   environments:
   - key: dev
+    owner: jenkinsjx
+    repository: jx3-cluster
   - key: staging
   - key: production
   ingress:
     domain: ""
-    externalDNS: false
+    kind: ingress
     namespaceSubDomain: -jx.
     tls:
       email: ""
       enabled: false
-      production: false
+      production: true
+  pipelineUser:
+    username: proxysupport
   repository: nexus
   secretStorage: gsm
+  storage:
+  - name: logs
+    url: gs://logs-tf-jx-ultimate-moray-b7b05cf5b2a0
+  - name: reports
+    url: gs://reports-tf-jx-ultimate-moray-b7b05cf5b2a0
+  - name: repository
+    url: gs://repository-tf-jx-ultimate-moray-b7b05cf5b2a0
   vault: {}
   webhook: lighthouse
